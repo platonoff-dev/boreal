@@ -6,7 +6,7 @@ A small Fly.io-style cloud runtime for launching isolated "machines" across seve
 Run the CLI:
 
 ```bash
-go run ./cmd/boreal
+cargo run
 ```
 
 Run the full local gate:
@@ -21,4 +21,4 @@ Install Git hooks:
 make bootstrap
 ```
 
-The gate is intentionally strict: `go mod tidy -diff`, `gofmt`, `go vet`, race-enabled tests, and `golangci-lint` with all non-deprecated linters enabled. The pre-commit and pre-push hooks run the same `make check` target.
+The gate is intentionally strict: `cargo fmt --check`, `cargo clippy --all-targets --all-features -- -D warnings`, and `cargo test --all-targets --all-features`. The pre-commit and pre-push hooks run the same `make check` target.

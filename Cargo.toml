@@ -1,0 +1,8 @@
+[package]
+name = "boreal"
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.95"
+description = "A small Fly.io-style cloud runtime for launching isolated machines across several nodes."
+
+[dependencies]

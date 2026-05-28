@@ -3,7 +3,7 @@ title: Boreal
 status: planned
 tags: [project, boreal, cloud-runtime, distributed-systems, linux, containers, scheduler]
 created: 2026-05-01
-updated: 2026-05-23
+updated: 2026-05-29
 ---
 
 # Boreal
@@ -84,7 +84,7 @@ Maps to M10 (Distributed systems) and is Boss Fight 4 (Distributed systems).
 - Local volume manager.
 - WAL-backed metadata.
 - Snapshot / restore.
-- Optional mini LSM KV sidecar.
+- Optional mini LSM KV crate.
 
 Maps to M9 (Databases and storage engines).
 
@@ -123,13 +123,13 @@ Planned. The 3-month starter targets Boreal v0; the 12-month plan reaches v3–v
 - 2026-05-01 — Single primary mega-project chosen over independent labs — concentrates work, forces every weak area, and produces a coherent portfolio story instead of scattered small repos.
 - 2026-05-01 — v7 caps at one advanced extension — preventing the project from drifting into a Kubernetes clone or a multi-track research effort.
 - 2026-05-01 — Use existing OCI runtime in v1 before any custom runtime work — defers the hardest Linux internals until M6 is complete.
-- 2026-05-23 — Go primary, Rust slices in v5 (LSM KV sidecar) and v6 (eBPF telemetry + flamegraphs) — see [ADR-0002](adr/0002-language.md). Ships v0–v3 on the velocity track; lands Rust unsafe literacy on the surfaces that materially benefit (storage engine, kernel-adjacent perf).
+- 2026-05-29 — Rust is the sole implementation language across v0–v7 — see [ADR-0002](adr/0002-language.md). This folds control-plane, agent, scheduler, Raft, networking, storage, and observability work into one Rust codebase instead of preserving a Go/Rust boundary.
 
 ## Open questions
 
 - v4 Raft is constrained by the roadmap's must-implement-manually list — Raft election and log replication get built by hand at M10. Open question is whether Boreal v4 reuses that hand-built implementation directly, or wraps it as a library with the deterministic simulator and linearizability checker layered on top.
 - How small can v0 be while still demoable and benchmarkable in under 30 minutes from `git clone`?
-- Shape of the Go/Rust IPC boundary for v5 and v6 — gets its own ADR when v5 design begins.
+- Shape of the internal Rust crate boundaries between control plane, agent, storage, and observability.
 
 ## Links
 
